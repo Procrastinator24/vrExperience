@@ -1,0 +1,23 @@
+{
+  "name": "vr",
+  "version": "1.0.0",
+  "description": "VR-scene with babylon experience",
+  "keywords": [
+    "VR",
+    "babylon",
+    "js"
+  ],
+  "license": "ISC",
+  "author": "YEGOR",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "dev": "python -m http.server 8000",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@babylonjs/core": "^8.33.4",
+    "@babylonjs/inspector": "^8.33.4",
+    "@babylonjs/loaders": "^8.33.4"
+  }
+}

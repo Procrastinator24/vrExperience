@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "es6",
+    "checkJs": true,
+    "lib": ["es6", "dom", "dom.iterable"]
+  },
+  "include": ["**/*.js"],
+  "exclude": ["node_modules"]
+}
