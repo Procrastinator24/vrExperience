@@ -1,3 +1,8 @@
+// Конфигурация
+const CONFIG = {
+    MODEL_PATH: "./scene.glb", // Файл модели
+    TEXTURE_PATH: "./grass.jpg" // Текстура травы
+};
 document.addEventListener("DOMContentLoaded", function() {
     const canvas = document.getElementById("renderCanvas");
     const loadingElement = document.getElementById("loading");
@@ -16,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Загружаем модель используя LOAD
     loadingElement.textContent = "Загружаем модель...";
 
-    BABYLON.SceneLoader.Load("./", "model.glb", engine,
+    BABYLON.SceneLoader.Load("./", CONFIG.MODEL_PATH, engine,
         function (newScene) {
             console.log("✅ Модель загружена через Load!");
             console.log("📦 Всего мешей в сцене:", newScene.meshes.length);
@@ -31,6 +36,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
             // Теперь создаем камеру, свет и пол в ЗАГРУЖЕННОЙ сцене
             setupSceneAfterLoad();
+
+
 
             loadingElement.textContent = `✅ Модель загружена! Объектов: ${scene.meshes.length}`;
 
@@ -75,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function() {
         groundMesh = existingMesh
 
         const waterMaterial = new BABYLON.StandardMaterial("grassMat", scene)
-        const waterTexture = new BABYLON.Texture("./grass.jpg", scene); // текстура воды
+        const waterTexture = new BABYLON.Texture(CONFIG.TEXTURE_PATH, scene); // текстура воды
         waterTexture.uScale = 10.0; // Масштаб текстуры
         waterTexture.vScale = 10.0;
         waterMaterial.diffuseTexture = waterTexture;
@@ -171,6 +178,8 @@ document.addEventListener("DOMContentLoaded", function() {
             loadingElement.style.display = "block";
             vrButton.disabled = true;
 
+
+
             // Создаем VR опыт
             const xrHelper = await scene.createDefaultXRExperienceAsync({
                 floorMeshes: [groundMesh],
@@ -178,13 +187,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 teleportationFloorMeshes: [groundMesh]
             });
 
-            console.log("🕶️ VR активирован!");
 
             // Настраиваем телепортацию
             if (xrHelper.teleportation) {
                 xrHelper.teleportation.addFloorMesh(groundMesh);
                 console.log("📍 Телепортация настроена");
             }
+
             //setupVRCameraHeight();
             loadingElement.style.display = "none";
             vrButton.textContent = "VR активирован";
